@@ -3,7 +3,7 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 // import { menuRouter } from "./routers/menu";
 // import { orderRouter } from "./routers/order";
 // import { reviewRouter } from "./routers/review";
-// import { shopRouter } from "./routers/shop";
+import { shopRouter } from "./routers/shop";
 // import { userRouter } from "./routers/user";
 import { connect } from './schemas'
 
@@ -21,7 +21,7 @@ connect();
 // app.use('/api/menu', [menuRouter]);
 // app.use('/api/review', [reviewRouter]);
 // app.use('/api/order', [orderRouter]);
-// app.use('/api/shop', [shopRouter]);
+app.use('/api/shop', [shopRouter]);
 
 app.listen(5000, () => {
     console.log("listening at http://localhost:5000");
