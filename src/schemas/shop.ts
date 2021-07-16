@@ -4,9 +4,18 @@ const ShopSchema: Schema = new Schema({
     name: String,
     category: String,
     image: String,
-    orders: Number,
-    avgStar: String,
-    countStar: Number
+    orders: {
+        type: Number,
+        default: 0
+    },
+    avgStar: {
+        type: String,
+        default: "0"
+    },
+    countStar: {
+        type: Number,
+        default: 0
+    },
 });
 
 export default mongoose.model("Shops", ShopSchema);
