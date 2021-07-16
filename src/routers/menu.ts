@@ -120,6 +120,7 @@ menuRouter.post('/', async (req, res) => {
   const gubne_menu = [
     {
       "name": "굽네치킨",
+      "price": 18000,
       "image": "https://image.happymoney.co.kr/extimage/allianceProduct/20191128134627.png"
     },
     {
@@ -152,6 +153,7 @@ menuRouter.post('/', async (req, res) => {
   const themat = [
     {
       "name": "더맛있는족발보쌈",
+      "price": 27000,
       "image": "https://cdn.imweb.me/thumbnail/20210324/e9c3958dd079c.png"
     } ,
     {
@@ -505,7 +507,7 @@ const thechikago_menu =[
     {"name": "스시로키즈 set", "price":8900, "image":"http://sushiro.co.kr/data/file/menu/thumb/193x133_100/3718618333_CgA7kV6l_EC8AA4EC8B9CEBA19C-ED82A4ECA688-EC858BED8AB8.png"},
     ]
     const yamiga_menu =[
-    {"name": "야미가", "image":"http://www.yummyga.co.kr/img/logo.png"},
+    {"name": "야미가","price":8000, "image":"http://www.yummyga.co.kr/img/logo.png"},
     {"name": "히레가스", "price":8000, "image":"http://www.yummyga.co.kr/img/s1_1.jpg"},
     {"name": "치즈가스", "price":8000, "image":"http://www.yummyga.co.kr/img/s1_3.jpg"},
     {"name": "고구마치즈가스", "price":8000, "image":"http://www.yummyga.co.kr/img/s1_8.jpg"},
