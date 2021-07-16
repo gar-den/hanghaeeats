@@ -1,10 +1,10 @@
 import express, { Request, Response, NextFunction, Router } from 'express';
 import Orders from '../schemas/cart';
 
-const OrdersRouter = express.Router();
+const orderRouter = express.Router();
 
-OrdersRouter.post('/', async (req, res) => {
+orderRouter.post('/', async (req, res) => {
   res.json({ message: 'success' });
 });
 
-export { OrdersRouter };
+export { orderRouter };
