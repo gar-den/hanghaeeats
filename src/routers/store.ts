@@ -51,7 +51,10 @@ storeRouter.get('/search', async (req,res) => {
     const storeName = allStore[i].name
     if (storeName.includes(keyword)){
       searchList.push(allStore[i])
-    }}    
+    }}
+    if (searchList.length == 0){
+      return res.status(400).json({"message" : "검색결과가 없습니다."})
+    }
     res.status(200).json({
       message : "success", searchList : searchList
     })  
