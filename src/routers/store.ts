@@ -19,8 +19,8 @@ storeRouter.get('/', async (req, res) => {
         err: err,
       });
   }
-  
 })
+
 // pagenation
 storeRouter.get('/all/:pageNo', async (req, res) => {
   const pageNo = Number(req.params.pageNo);
