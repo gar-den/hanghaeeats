@@ -5,8 +5,14 @@ const UserSchema: Schema = new Schema({
     nickname: String,
     password: String,
     phone: String,
-    like_array: Array,
-    order_array: Array,
+    like_array: {
+        type: Array,
+        default: []
+    },
+    order_array: {
+        type: Array,
+        default: []
+    }
 });
 
 export default mongoose.model("Users", UserSchema);
