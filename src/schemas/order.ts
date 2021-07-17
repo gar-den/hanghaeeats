@@ -14,6 +14,10 @@ const OrderSchema: Schema = new Schema({
   },
   orderDate: Date,
   price: Number,
+  checkReview: {
+    type : Boolean,
+    default : false,
+  }
 });
 
 export default mongoose.model('Orders', OrderSchema);

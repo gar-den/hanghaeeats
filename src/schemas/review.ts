@@ -21,8 +21,18 @@ const ReviewSchema: Schema = new Schema({
         ref: "Order",
         require: true,
     },
-    content: String,
-    star: String
+    reviewDate: {
+        type: Date,        
+    },
+    content: {
+        type: String,
+        require: true,
+    },
+    star:{
+        type: Number,
+        require: true,
+    },
+    
 });
 
 export default mongoose.model("Reviews", ReviewSchema);
