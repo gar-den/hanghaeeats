@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction, Router } from 'express';
 import { authMiddleware } from '../auth-middleware';
 import Orders from '../schemas/order';
 import Menus from '../schemas/menu';
+import Stores from '../schemas/store';
 
 const orderRouter = express.Router();
 
@@ -20,8 +21,9 @@ orderRouter.post('/', authMiddleware, async (req, res) => {
 
     price += (menu_price * menus[i].count);
   }
-
+  
   await Orders.create({ storeId, menus, userId, orderDate: today, price });
+  await Stores.updateOne({ _id: storeId }, { $inc: {'orders': 1} });
   
   const order = await Orders.findOne({ orderDate: today });
 
@@ -31,9 +33,25 @@ orderRouter.post('/', authMiddleware, async (req, res) => {
 orderRouter.get('/', authMiddleware, async (req, res) => {
   const userId = res.locals.user._id;
 
-  const order = await Orders.find({ userId });
+  const orders = await Orders.find({ userId });
 
-  res.json({ message: 'success', order });
+  res.json({ message: 'success', orders: orders });
+})
+
+orderRouter.delete('/:orderId', authMiddleware, async(req, res) => {
+  const orderId = req.params.orderId;
+
+  try {
+    const store = await Orders.findOne({ _id: orderId })
+    const storeId = store.storeId
+
+    await Stores.updateOne({ _id: storeId }, { $inc: {'orders': -1} });
+    await Orders.deleteOne({ _id: orderId });
+
+    res.json({ message: 'success' });
+  } catch(err) {
+    res.json({ message: 'fail', err });
+  }
 })
 
 export { orderRouter };

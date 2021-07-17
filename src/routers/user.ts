@@ -34,7 +34,7 @@ userRouter.post('/', async (req, res) => {
 
     if (!error) {
         const crypted_password = crypto.createHmac('sha256', password).update('eats').digest('hex');
-        await Users.create({ email, nickname, password: crypted_password, confirmPassword, phone });
+        await Users.create({ email, nickname, password: crypted_password, phone });
 
         res.json({ message: "success" });
     } else {
@@ -100,6 +100,30 @@ userRouter.post('/like-a-store', authMiddleware, async (req, res) => {
         res.json({ message: "success" });
     } else {
         res.json({ message: "fail" });
+    }
+})
+
+// unlike a store
+userRouter.post('/unlike-a-store', authMiddleware, async (req, res) => {
+    let { storeId } = req.body;
+
+    const existStore = await Stores.findOne({ _id: storeId });
+
+    if (existStore) {
+        const storeId = existStore._id;
+        const userId = res.locals.user._id;
+
+        // if i already liked it
+        const like_array = res.locals.user.like_array;
+        if (like_array.includes(storeId)) {
+            await Users.update({ _id: userId }, {$pull: { like_array: storeId }});
+
+            res.json({ message: "success" });
+
+            return;
+        } else {
+            res.json({ message: "fail" });
+        }
     }
 })
 

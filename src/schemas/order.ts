@@ -3,7 +3,7 @@ import mongoose, { Schema, model, mongo } from 'mongoose';
 const OrderSchema: Schema = new Schema({
   storeId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Store',
+    ref: 'Stores',
     require: true,
   },
   menus: Array,

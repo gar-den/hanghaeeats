@@ -9,7 +9,7 @@ function authMiddleware(req: Request, res: Response, next: NextFunction) {
 
     try {
         if (authorization == null || authorization == undefined) {
-            res.json({ message: "fail" });
+            res.status(401).json({ message: "fail" });
 
             return;
         }
@@ -18,7 +18,7 @@ function authMiddleware(req: Request, res: Response, next: NextFunction) {
         const tokenScheme = tokenArray[0];
 
         if (tokenScheme != "Bearer") {
-            res.json({ message: "fail" });
+            res.status(401).json({ message: "fail" });
 
             return
         }
@@ -33,11 +33,11 @@ function authMiddleware(req: Request, res: Response, next: NextFunction) {
 
             next();
         }).catch((err: object) => {
-            res.json({ message: "fail", err: err });
+            res.status(401).json({ message: "fail", err: err });
         })
 
     } catch(err) {
-        res.json({ message: "fail", err: err });
+        res.status(401).json({ message: "fail", err: err });
     }
 }
 
