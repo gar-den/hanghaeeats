@@ -1,9 +1,9 @@
-import mongoose, { Schema, model, mongo } from 'mongoose';
+import mongoose, { Schema, model, mongo } from "mongoose";
 
 const MenuSchema: Schema = new Schema({
   storeId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Store',
+    ref: "Store",
     require: true,
   },
   name: String,
@@ -11,4 +11,4 @@ const MenuSchema: Schema = new Schema({
   image: String,
 });
 
-export default mongoose.model('Menus', MenuSchema);
+export default mongoose.model("Menus", MenuSchema);

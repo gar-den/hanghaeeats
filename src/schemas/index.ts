@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const url = "mongodb://localhost:27017/hanghaeeats";
 
 const connect = (): void => {
-    mongoose
+  mongoose
     .connect(url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -16,7 +16,7 @@ const connect = (): void => {
 };
 
 mongoose.connection.on("error", (err): void => {
-    console.log("mongoDB connection error", err);
-  });
-  
-  export { connect };
+  console.log("mongoDB connection error", err);
+});
+
+export { connect };
