@@ -12,8 +12,8 @@ storeRouter.get('/all/:pageNo', async (req, res) => {
     res.json({ message: "fail" });
 
     return;
-  }
-
+  }  
+  
   for (let i: number = pageNo * 10; i < pageNo * 10 + 10; i ++) {
     stores_page.push(stores[i]);
   }
