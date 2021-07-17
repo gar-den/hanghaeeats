@@ -3,7 +3,7 @@ import Stores from '../schemas/store'
 
 const storeRouter = express.Router();
 
-storeRouter.get('/:pageNo', async (req, res) => {
+storeRouter.get('/all/:pageNo', async (req, res) => {
   const pageNo = Number(req.params.pageNo);
   const stores = await Stores.find({});
   const stores_page:Array<object> = [];
@@ -21,5 +21,4 @@ storeRouter.get('/:pageNo', async (req, res) => {
   res.json({ message: "success", stores: stores_page });
 })
 
-    
 export { storeRouter };
