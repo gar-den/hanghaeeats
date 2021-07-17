@@ -2,9 +2,9 @@ import express, { Request, Response, NextFunction, Router } from 'express';
 import Menus from '../schemas/menu';
 import Shops from '../schemas/shop';
 
-const menuRouter = express.Router();
+const menuPost = express.Router();
 
-menuRouter.post('/', async (req, res) => {
+menuPost.post('/', async (req, res) => {
   const bhc_menu = [
     {
       "name": "뿌링클",
@@ -978,4 +978,4 @@ for (let i = 0; i < 5; i ++) {
   
 });
 
-export { menuRouter };
+export { menuPost };
