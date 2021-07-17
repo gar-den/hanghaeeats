@@ -103,6 +103,30 @@ userRouter.post('/like-a-store', authMiddleware, async (req, res) => {
     }
 })
 
+// unlike a store
+userRouter.post('/unlike-a-store', authMiddleware, async (req, res) => {
+    let { storeId } = req.body;
+
+    const existStore = await Stores.findOne({ _id: storeId });
+
+    if (existStore) {
+        const storeId = existStore._id;
+        const userId = res.locals.user._id;
+
+        // if i already liked it
+        const like_array = res.locals.user.like_array;
+        if (like_array.includes(storeId)) {
+            await Users.update({ _id: userId }, {$pull: { like_array: storeId }});
+
+            res.json({ message: "success" });
+
+            return;
+        } else {
+            res.json({ message: "fail" });
+        }
+    }
+})
+
 // get liked stores
 userRouter.get('/like-stores', authMiddleware, async (req, res) => {
     const like_array = res.locals.user.like_array;
