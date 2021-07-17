@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction, Router } from 'express';
 import Menus from '../schemas/menu';
-import Shops from '../schemas/shop';
+import Stores from '../schemas/store';
 
 const menuRouter = express.Router();
 

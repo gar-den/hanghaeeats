@@ -1,6 +1,6 @@
 import mongoose, {Schema, model, mongo} from "mongoose";
 
-const ShopSchema: Schema = new Schema({
+const StoreSchema: Schema = new Schema({
     name: String,
     category: String,
     image: String,
@@ -18,4 +18,4 @@ const ShopSchema: Schema = new Schema({
     },
 });
 
-export default mongoose.model("Shops", ShopSchema);
+export default mongoose.model("Stores", StoreSchema);

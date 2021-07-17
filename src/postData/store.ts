@@ -1,9 +1,9 @@
 import express, { Request, Response, NextFunction, Router } from "express";
-import Shops from '../schemas/shop'
+import Shops from '../schemas/store'
 
-const shopPost = express.Router();
+const storePost = express.Router();
 
-shopPost.post('/', async (req, res) => {
+storePost.post('/', async (req, res) => {
     // const { name, category, image, orders, avgStar, countStar }
     // : { name: string, category: string, image: string, orders: number, avgStar: string, countStar: number} = req.body;
 
@@ -239,4 +239,4 @@ shopPost.post('/', async (req, res) => {
     
 });
 
-export { shopPost };
+export { storePost };
