@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction, Router } from 'express';
 import Menus from '../schemas/menu';
-import Shops from '../schemas/store';
+import Stores from '../schemas/store';
 
 const menuPost = express.Router();
 
@@ -548,422 +548,419 @@ const thechikago_menu =[
       let image;
 
     for (let i = 0; i < 5; i ++) {
-      const bhc = await Shops.findOne({ name: "bhc" })
-      const bhc_id = bhc._id;
-
+      const bhc = await Stores.findOne({ name: "bhc" })
       let name = bhc_menu[i].name;
       let price = bhc_menu[i].price;
       let image = bhc_menu[i].image;
-      await Menus.create({ shopId: bhc_id, name, price, image });
+      await Menus.create({ storeId: bhc._id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-      const kyochon = await Shops.findOne({ name: "교촌치킨" })
-      const kyochon_id = kyochon._id;
+      const kyochon = await Stores.findOne({ name: "교촌치킨" })
 
       let name = kyochon_menu[i].name;
       let price = kyochon_menu[i].price;
       let image = kyochon_menu[i].image;
-      await Menus.create({ shopId: kyochon_id, name, price, image });
+      await Menus.create({ storeId: kyochon._id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-      const puradak = await Shops.findOne({ name: "푸라닭치킨" })
+      const puradak = await Stores.findOne({ name: "푸라닭치킨" })
       const puradak_id = puradak._id;
 
       let name = puradak_menu[i].name;
       let price = puradak_menu[i].price;
       let image = puradak_menu[i].image;
-      await Menus.create({ shopId: puradak_id, name, price, image });
+      await Menus.create({ storeId: puradak_id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-      const bbq = await Shops.findOne({ name: "bbq" })
+      const bbq = await Stores.findOne({ name: "bbq" })
       const bbq_id = bbq._id;
 
       let name = bbq_menu[i].name;
       let price = bbq_menu[i].price;
       let image = bbq_menu[i].image;
-      await Menus.create({ shopId: bbq_id, name, price, image });
+      await Menus.create({ storeId: bbq_id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-      const gubne = await Shops.findOne({ name: "굽네치킨" })
+      const gubne = await Stores.findOne({ name: "굽네치킨" })
       const gubne_id = gubne._id;
 
       let name = gubne_menu[i].name;
       let price = gubne_menu[i].price;
       let image = gubne_menu[i].image;
-      await Menus.create({ shopId: gubne_id, name, price, image });
+      await Menus.create({ storeId: gubne_id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-      let shop = await Shops.findOne({ name: "더맛있는족발보쌈" })
+      let shop = await Stores.findOne({ name: "더맛있는족발보쌈" })
       let shop_id = shop._id;
 
       let name = themat[i].name;
       let price = themat[i].price;
       let image = themat[i].image;
-      await Menus.create({ shopId: shop_id, name, price, image });
+      await Menus.create({ storeId: shop_id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-      shop = await Shops.findOne({ name: "원할머니보쌈족발" })
+      shop = await Stores.findOne({ name: "원할머니보쌈족발" })
       shop_id = shop._id;
 
        name = onegrandma[i].name;
        price = onegrandma[i].price;
        image = onegrandma[i].image;
-      await Menus.create({ shopId: shop_id, name, price, image });
+      await Menus.create({ storeId: shop_id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-      shop = await Shops.findOne({ name: "삼대족발" })
+      shop = await Stores.findOne({ name: "삼대족발" })
       shop_id = shop._id;
 
        name = samdae[i].name;
        price = samdae[i].price;
        image = samdae[i].image;
-      await Menus.create({ shopId: shop_id, name, price, image });
+      await Menus.create({ storeId: shop_id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-       shop = await Shops.findOne({ name: "더맛있는족발보쌈" })
+       shop = await Stores.findOne({ name: "더맛있는족발보쌈" })
        shop_id = shop._id;
 
        name = themat[i].name;
        price = themat[i].price;
        image = themat[i].image;
-      await Menus.create({ shopId: shop_id, name, price, image });
+      await Menus.create({ storeId: shop_id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-       shop = await Shops.findOne({ name: "장충동왕족발보쌈" })
+       shop = await Stores.findOne({ name: "장충동왕족발보쌈" })
        shop_id = shop._id;
 
        name = jangchungdong[i].name;
        price = jangchungdong[i].price;
        image = jangchungdong[i].image;
-      await Menus.create({ shopId: shop_id, name, price, image });
+      await Menus.create({ storeId: shop_id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-       shop = await Shops.findOne({ name: "가장맛있는족발" })
+       shop = await Stores.findOne({ name: "가장맛있는족발" })
        shop_id = shop._id;
 
        name = gajang[i].name;
        price = gajang[i].price;
        image = gajang[i].image;
-      await Menus.create({ shopId: shop_id, name, price, image });
+      await Menus.create({ storeId: shop_id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-       shop = await Shops.findOne({ name: "신전떡볶이" })
+       shop = await Stores.findOne({ name: "신전떡볶이" })
        shop_id = shop._id;
 
        name = sinjeon[i].name;
        price = sinjeon[i].price;
        image = sinjeon[i].image;
-      await Menus.create({ shopId: shop_id, name, price, image });
+      await Menus.create({ storeId: shop_id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-       shop = await Shops.findOne({ name: "엽기떡볶이" })
+       shop = await Stores.findOne({ name: "엽기떡볶이" })
        shop_id = shop._id;
 
        name = yeopgi[i].name;
        price = yeopgi[i].price;
        image = yeopgi[i].image;
-      await Menus.create({ shopId: shop_id, name, price, image });
+      await Menus.create({ storeId: shop_id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-       shop = await Shops.findOne({ name: "명랑핫도그" })
+       shop = await Stores.findOne({ name: "명랑핫도그" })
        shop_id = shop._id;
 
        name = myeonglang[i].name;
        price = myeonglang[i].price;
        image = myeonglang[i].image;
-      await Menus.create({ shopId: shop_id, name, price, image });
+      await Menus.create({ storeId: shop_id, name, price, image });
     }
 
     for (let i = 0; i < 5; i ++) {
-      shop = await Shops.findOne({ name: "삼첩분식" })
+      shop = await Stores.findOne({ name: "삼첩분식" })
       shop_id = shop._id;
 
       name = samcheop[i].name;
       price = samcheop[i].price;
       image = samcheop[i].image;
 
-      await Menus.create({ shopId: shop_id, name, price, image });
+      await Menus.create({ storeId: shop_id, name, price, image });
    }
 
    for (let i = 0; i < 5; i ++) {
-    shop = await Shops.findOne({ name: "청년다방" })
+    shop = await Stores.findOne({ name: "청년다방" })
     shop_id = shop._id;
 
     name = cheongnyeon[i].name;
     price = cheongnyeon[i].price;
     image = cheongnyeon[i].image;
 
-    await Menus.create({ shopId: shop_id, name, price, image });
+    await Menus.create({ storeId: shop_id, name, price, image });
  }
 
  for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "메가커피" })
+  shop = await Stores.findOne({ name: "메가커피" })
   shop_id = shop._id;
 
   name = mejacoffee_menu[i].name;
   price = mejacoffee_menu[i].price;
   image = mejacoffee_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "던킨" })
+  shop = await Stores.findOne({ name: "던킨" })
   shop_id = shop._id;
 
   name = dunkin_menu[i].name;
   price = dunkin_menu[i].price;
   image = dunkin_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "배스킨라빈스" })
+  shop = await Stores.findOne({ name: "배스킨라빈스" })
   shop_id = shop._id;
 
   name = baskin_menu[i].name;
   price = baskin_menu[i].price;
   image = baskin_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "아우어베이커리" })
+  shop = await Stores.findOne({ name: "아우어베이커리" })
   shop_id = shop._id;
 
   name = auabekery_menu[i].name;
   price = auabekery_menu[i].price;
   image = auabekery_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "미스터피자" })
+  shop = await Stores.findOne({ name: "미스터피자" })
   shop_id = shop._id;
 
   name = mrpizza_menu[i].name;
   price = mrpizza_menu[i].price;
   image = mrpizza_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "피자헛" })
+  shop = await Stores.findOne({ name: "피자헛" })
   shop_id = shop._id;
 
   name = pizzahut_menu[i].name;
   price = pizzahut_menu[i].price;
   image = pizzahut_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "반올림피자샵" })
+  shop = await Stores.findOne({ name: "반올림피자샵" })
   shop_id = shop._id;
 
   name = banallrim_menu[i].name;
   price = banallrim_menu[i].price;
   image = banallrim_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "7번가피자" })
+  shop = await Stores.findOne({ name: "7번가피자" })
   shop_id = shop._id;
 
   name = bunga_menu[i].name;
   price = bunga_menu[i].price;
   image = bunga_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "파파존스" })
+  shop = await Stores.findOne({ name: "파파존스" })
   shop_id = shop._id;
 
   name = papazonse_menu[i].name;
   price = papazonse_menu[i].price;
   image = papazonse_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "맥도날드" })
+  shop = await Stores.findOne({ name: "맥도날드" })
   shop_id = shop._id;
 
   name = mcdonald_menu[i].name;
   price = mcdonald_menu[i].price;
   image = mcdonald_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "버거킹" })
+  shop = await Stores.findOne({ name: "버거킹" })
   shop_id = shop._id;
 
   name = burgerking_menu[i].name;
   price = burgerking_menu[i].price;
   image = burgerking_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "KFC" })
+  shop = await Stores.findOne({ name: "KFC" })
   shop_id = shop._id;
 
   name = kfc_menu[i].name;
   price = kfc_menu[i].price;
   image = kfc_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "맘스터치" })
+  shop = await Stores.findOne({ name: "맘스터치" })
   shop_id = shop._id;
 
   name = momstouch_menu[i].name;
   price = momstouch_menu[i].price;
   image = momstouch_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-   shop = await Shops.findOne({ name: "롯데리아" })
+   shop = await Stores.findOne({ name: "롯데리아" })
    shop_id = shop._id;
 
    name = lotteria_menu[i].name;
    price = lotteria_menu[i].price;
    image = lotteria_menu[i].image;
 
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "고래카레" })
+  shop = await Stores.findOne({ name: "고래카레" })
   shop_id = shop._id;
 
   name = gorea_menu[i].name;
    price = gorea_menu[i].price;
    image = gorea_menu[i].image;
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "홍익돈까스" })
+  shop = await Stores.findOne({ name: "홍익돈까스" })
   shop_id = shop._id;
 
   name = hongik_menu[i].name;
   price = hongik_menu[i].price;
   image = hongik_menu[i].image;
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "도쿄라멘 3900" })
+  shop = await Stores.findOne({ name: "도쿄라멘 3900" })
   shop_id = shop._id;
 
   name = tokyo_menu[i].name;
   price = tokyo_menu[i].price;
   image = tokyo_menu[i].image;
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "야미가" })
+  shop = await Stores.findOne({ name: "야미가" })
   shop_id = shop._id;
 
   name = yamiga_menu[i].name;
   price = yamiga_menu[i].price;
   image = yamiga_menu[i].image;
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "스시로" })
+  shop = await Stores.findOne({ name: "스시로" })
   shop_id = shop._id;
 
   name = shushiro_menu[i].name;
   price = shushiro_menu[i].price;
   image = shushiro_menu[i].image;
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "정쉐프탕수육" })
+  shop = await Stores.findOne({ name: "정쉐프탕수육" })
   shop_id = shop._id;
 
   name = jungchef_menu[i].name;
   price = jungchef_menu[i].price;
   image = jungchef_menu[i].image;
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "더시카고짬뽕" })
+  shop = await Stores.findOne({ name: "더시카고짬뽕" })
   shop_id = shop._id;
 
   name = thechikago_menu[i].name;
   price = thechikago_menu[i].price;
   image = thechikago_menu[i].image;
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "홍짜장" })
+  shop = await Stores.findOne({ name: "홍짜장" })
   shop_id = shop._id;
 
   name = hongzzazang_menu[i].name;
   price = hongzzazang_menu[i].price;
   image = hongzzazang_menu[i].image;
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "피슈마라홍탕" })
+  shop = await Stores.findOne({ name: "피슈마라홍탕" })
   shop_id = shop._id;
 
   name = pisumarahongtang_menu[i].name;
   price = pisumarahongtang_menu[i].price;
   image = pisumarahongtang_menu[i].image;
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 for (let i = 0; i < 5; i ++) {
-  shop = await Shops.findOne({ name: "홍콩반점" })
+  shop = await Stores.findOne({ name: "홍콩반점" })
   shop_id = shop._id;
 
   name = hongkong_menu[i].name;
   price = hongkong_menu[i].price;
   image = hongkong_menu[i].image;
-  await Menus.create({ shopId: shop_id, name, price, image });
+  await Menus.create({ storeId: shop_id, name, price, image });
 }
 
 
