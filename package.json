@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node dist/app.js",
     "dev": "tsc && nodemon src/app.ts",
+    "prettify": "prettier --write src/*.ts src/**/*.ts",
     "build": "tsc -p ."
   },
   "author": "",

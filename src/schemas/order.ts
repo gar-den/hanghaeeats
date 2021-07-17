@@ -1,24 +1,23 @@
-import mongoose, { Schema, model, mongo } from 'mongoose';
+import mongoose, { Schema, model, mongo } from "mongoose";
 
 const OrderSchema: Schema = new Schema({
   storeId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Stores',
+    ref: "Stores",
     require: true,
   },
   menus: Array,
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
     require: true,
   },
   orderDate: Date,
   price: Number,
   checkReview: {
-    type : Boolean,
-    default : false,
-  }
+    type: Boolean,
+    default: false,
+  },
 });
 
-export default mongoose.model('Orders', OrderSchema);
-
+export default mongoose.model("Orders", OrderSchema);
