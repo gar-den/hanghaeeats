@@ -31,9 +31,21 @@ orderRouter.post('/', authMiddleware, async (req, res) => {
 orderRouter.get('/', authMiddleware, async (req, res) => {
   const userId = res.locals.user._id;
 
-  const order = await Orders.find({ userId });
+  const orders = await Orders.find({ userId });
 
-  res.json({ message: 'success', order });
+  res.json({ message: 'success', orders: orders });
+})
+
+orderRouter.delete('/:orderId', authMiddleware, async(req, res) => {
+  const orderId = req.params.orderId;
+  
+  try {
+    await Orders.deleteOne({ _id: orderId });
+
+    res.json({ message: 'success' });
+  } catch(err) {
+    res.json({ message: 'fail', err });
+  }
 })
 
 export { orderRouter };
