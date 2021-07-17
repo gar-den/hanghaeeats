@@ -34,7 +34,7 @@ userRouter.post('/', async (req, res) => {
 
     if (!error) {
         const crypted_password = crypto.createHmac('sha256', password).update('eats').digest('hex');
-        await Users.create({ email, nickname, password: crypted_password, confirmPassword, phone });
+        await Users.create({ email, nickname, password: crypted_password, phone });
 
         res.json({ message: "success" });
     } else {
