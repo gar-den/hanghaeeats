@@ -95,7 +95,7 @@ userRouter.post('/like-a-store', authMiddleware, async (req, res) => {
             return;
         }
 
-        await Users.update({ _id: userId }, { $push: { like_array: storeId } });
+        await Users.updateOne({ _id: userId }, { $push: { like_array: storeId } });
 
         res.json({ message: "success" });
     } else {
@@ -116,7 +116,7 @@ userRouter.post('/unlike-a-store', authMiddleware, async (req, res) => {
         // if i already liked it
         const like_array = res.locals.user.like_array;
         if (like_array.includes(storeId)) {
-            await Users.update({ _id: userId }, {$pull: { like_array: storeId }});
+            await Users.updateOne({ _id: userId }, {$pull: { like_array: storeId }});
 
             res.json({ message: "success" });
 

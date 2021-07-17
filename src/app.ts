@@ -1,4 +1,6 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
+import bodyParser from 'body-parser';
+
 import { cartRouter } from './routers/cart';
 import { orderRouter } from './routers/order';
 import { reviewRouter } from './routers/review';
@@ -15,6 +17,7 @@ import { connect } from './schemas';
 const app = express(); // variable automatically inferred as Application
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(bodyParser.json());
 
 const port = 5000;
 
