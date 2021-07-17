@@ -6,11 +6,7 @@ const OrderSchema: Schema = new Schema({
     ref: 'Store',
     require: true,
   },
-  menuId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Menu',
-    require: true,
-  },
+  menus: Array,
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -21,3 +17,4 @@ const OrderSchema: Schema = new Schema({
 });
 
 export default mongoose.model('Orders', OrderSchema);
+
