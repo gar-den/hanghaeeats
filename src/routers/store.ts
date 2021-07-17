@@ -21,6 +21,19 @@ storeRouter.get('/', async (req, res) => {
   }
 })
 
+storeRouter.get('/:storeId', async (req, res) => {
+  const storeId = req.params.storeId;
+
+  try {
+    const store = await Stores.findOne({ _id: storeId });
+
+    res.json({ message: "success", store });
+  } catch (err) {
+    res.json({ message: "fail", err });
+  }
+  
+})
+
 // pagenation
 storeRouter.get('/all/:pageNo', async (req, res) => {
   const pageNo = Number(req.params.pageNo);
