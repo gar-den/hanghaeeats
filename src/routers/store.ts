@@ -21,8 +21,8 @@ storeRouter.get("/", async (req, res) => {
   }
 });
 
-storeRouter.get("/:storeId", async (req, res) => {
-  const storeId = req.params.storeId;
+storeRouter.get("/one/:storeId", async (req, res) => {
+  const storeId:String = String(req.params.storeId);
 
   try {
     const store = await Stores.findOne({ _id: storeId });
@@ -52,15 +52,18 @@ storeRouter.get("/all/:pageNo", async (req, res) => {
   res.json({ message: "success", stores: stores_page });
 });
 
+
 // 검색기능
 storeRouter.get("/search", async (req, res) => {
-  const keyword = req.query.q;
-
+  const keyword:String = String(req.query.q);
+  
   try {
     let searchList = [];
-    const allStore = await Stores.find({}).exec();
+    const allStore = await Stores.find({});
+
     for (let i = 0; i < allStore.length; i++) {
       const storeName = allStore[i].name;
+
       if (storeName.includes(keyword)) {
         searchList.push(allStore[i]);
       }
