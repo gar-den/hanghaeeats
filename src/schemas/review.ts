@@ -6,11 +6,7 @@ const ReviewSchema: Schema = new Schema({
         ref: "Store",
         require: true,
     },
-    menuId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Menu",
-        require: true,
-    },
+    menuIdList: Array,
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
