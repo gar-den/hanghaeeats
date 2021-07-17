@@ -1,9 +1,9 @@
 import mongoose, { Schema, model, mongo } from 'mongoose';
 
 const CartSchema: Schema = new Schema({
-  shopId: {
+  storeId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Shop',
+    ref: 'Store',
     require: true,
   },
   menuId: {
