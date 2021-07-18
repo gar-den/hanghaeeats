@@ -21,3 +21,5 @@ const StoreSchema: Schema = new Schema({
 StoreSchema.index({ name: "text" });
 
 export default mongoose.model("Stores", StoreSchema);
+
+
