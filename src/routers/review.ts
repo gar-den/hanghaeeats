@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction, Router } from "express";
 import { authMiddleware } from "../auth-middleware";
 import Reviews from "../schemas/review";
 import Orders from "../schemas/order";
-import review from "../schemas/review";
+import Stores from "../schemas/store"
 
 const reviewRouter = express.Router();
 
@@ -24,6 +24,21 @@ reviewRouter.post("/", authMiddleware, async (req, res) => {
       content,
       star,
     });
+
+    let targetStore = await Stores.findOne({_id : storeId})
+    let avgStar = targetStore.avgStar
+    let countStar = targetStore.countStar
+    
+    let sumStar = avgStar * countStar + star
+
+    countStar += 1
+    avgStar = sumStar/countStar
+    // const intAvgStar = Math.round(avgStar * 10) / 10
+    targetStore.avgStar = avgStar
+    targetStore.countStar = countStar
+    console.log(targetStore)
+    await targetStore.save()
+    
     isExistCheckReview.checkReview = true;
     await isExistCheckReview.save();
     // const reviewId = await Reviews.find({})
