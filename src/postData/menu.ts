@@ -1338,16 +1338,6 @@ menuPost.post("/", async (req, res) => {
     }
 
     for (let i = 0; i < 5; i++) {
-      shop = await Stores.findOne({ name: "더맛있는족발보쌈" });
-      shop_id = shop._id;
-
-      name = themat[i].name;
-      price = themat[i].price;
-      image = themat[i].image;
-      await Menus.create({ storeId: shop_id, name, price, image });
-    }
-
-    for (let i = 0; i < 5; i++) {
       shop = await Stores.findOne({ name: "장충동왕족발보쌈" });
       shop_id = shop._id;
 
@@ -1426,6 +1416,17 @@ menuPost.post("/", async (req, res) => {
       name = mejacoffee_menu[i].name;
       price = mejacoffee_menu[i].price;
       image = mejacoffee_menu[i].image;
+
+      await Menus.create({ storeId: shop_id, name, price, image });
+    }
+
+    for (let i = 0; i < 5; i++) {
+      shop = await Stores.findOne({ name: "앤티앤스프레즐" });
+      shop_id = shop._id;
+
+      name = entienzprezzl_menu[i].name;
+      price = entienzprezzl_menu[i].price;
+      image = entienzprezzl_menu[i].image;
 
       await Menus.create({ storeId: shop_id, name, price, image });
     }

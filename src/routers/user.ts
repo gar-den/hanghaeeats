@@ -16,13 +16,12 @@ const joiSchema = joi.object({
     .required(),
   nickname: joi.string().min(3).max(30).required(),
   password: joi.string().pattern(new RegExp("^[a-zA-Z0-9]{4,30}$")),
-  confirmPassword: joi.ref("password"),
   phone: joi.string().min(10).max(11),
 });
 
 // register
 userRouter.post("/", async (req, res) => {
-  const { email, nickname, password, confirmPassword, phone } = req.body;
+  const { email, nickname, password, phone } = req.body;
 
   const existUser = await Users.findOne({ nickname, email });
   if (existUser) {
@@ -35,7 +34,6 @@ userRouter.post("/", async (req, res) => {
     email,
     nickname,
     password,
-    confirmPassword,
     phone,
   });
 
