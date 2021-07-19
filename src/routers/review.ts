@@ -8,7 +8,7 @@ const reviewRouter = express.Router();
 
 reviewRouter.post("/", authMiddleware, async (req, res) => {
   const { userId } = res.locals.user;
-  const { storeId, menuIdList, orderId, content, star } = req.body;
+  const { orderId, content, star } = req.body;
   const date = new Date();
   try {
     const isExistCheckReview = await Orders.findOne({ _id: orderId }).exec();
@@ -16,16 +16,16 @@ reviewRouter.post("/", authMiddleware, async (req, res) => {
       return res.status(400).json({ message: "이미 리뷰를 작성하셨습니다." });
     }
     const currentReview = await Reviews.create({
-      storeId,
+      storeId : isExistCheckReview.storeId,
       orderId,
-      menuIdList,
+      menuIdList : isExistCheckReview.menuIdList,
       userId,
       date,
       content,
       star,
     });
 
-    let targetStore = await Stores.findOne({_id : storeId})
+    let targetStore = await Stores.findOne({_id : isExistCheckReview.storeId})
     let avgStar = targetStore.avgStar
     let countStar = targetStore.countStar
     
