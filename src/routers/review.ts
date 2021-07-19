@@ -15,10 +15,18 @@ reviewRouter.post("/", authMiddleware, async (req, res) => {
     if (isExistCheckReview.checkReview == true) {
       return res.status(400).json({ message: "이미 리뷰를 작성하셨습니다." });
     }
+    let menuIdList : Array<string> = []
+    for (let i = 0; i<isExistCheckReview.menus.length; i++){
+      menuIdList.push(isExistCheckReview.menus[i].menuId)
+      console.log(isExistCheckReview.menus[i])
+      console.log(isExistCheckReview.menus[i].menuId)
+    }
+    
+
     const currentReview = await Reviews.create({
       storeId : isExistCheckReview.storeId,
       orderId,
-      menuIdList : isExistCheckReview.menuIdList,
+      menuIdList : menuIdList,
       userId,
       date,
       content,
@@ -36,7 +44,6 @@ reviewRouter.post("/", authMiddleware, async (req, res) => {
     // const intAvgStar = Math.round(avgStar * 10) / 10
     targetStore.avgStar = avgStar
     targetStore.countStar = countStar
-    console.log(targetStore)
     await targetStore.save()
     
     isExistCheckReview.checkReview = true;
