@@ -23,6 +23,10 @@ const port = 5000;
 
 connect();
 
+app.get('/', (req, res) => {
+  res.send("Hello");
+})
+
 // APIs
 app.use("/api/user", [userRouter]);
 app.use("/api/cart", [cartRouter]);
