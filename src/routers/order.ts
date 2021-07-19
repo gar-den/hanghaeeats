@@ -22,12 +22,19 @@ orderRouter.post("/", authMiddleware, async (req, res) => {
     price += menu_price * menus[i].count;
   }
 
+  let ship_fee = 0
+  if (price < 50000) {
+    price += 2000;
+
+    ship_fee = 2000;
+  }
+
   await Orders.create({ storeId, menus, userId, orderDate: today, price });
   await Stores.updateOne({ _id: storeId }, { $inc: { orders: 1 } });
 
   const order = await Orders.findOne({ orderDate: today });
 
-  res.json({ message: "success", orderId: order._id });
+  res.json({ message: "success", ship_fee, orderId: order._id });
 });
 
 orderRouter.get("/", authMiddleware, async (req, res) => {
