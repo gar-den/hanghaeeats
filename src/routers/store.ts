@@ -6,12 +6,18 @@ const storeRouter = express.Router();
 //가게 전부 가져오기 (query값 입력하지 않으면 됨)
 // 정해진 카테고리에 맞는 가게 전부 가져오기
 storeRouter.get("/", async (req, res) => {
-  const { category } = req.query;
+  const { category, sort } = req.query;
   try {
-    const categorizedStores = await Stores.find({ category: category }).exec();
+    let stores;
+    if (sort) {
+      stores = await Stores.find({ category: category }).sort(`-${sort}`).exec();
+    } else {
+      stores = await Stores.find({ category: category }).exec();
+    }
+    
     res.status(200).json({
       message: "success",
-      stores: categorizedStores,
+      stores
     });
   } catch (err) {
     res.status(400).json({
