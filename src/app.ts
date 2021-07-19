@@ -1,5 +1,6 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 import { cartRouter } from "./routers/cart";
 import { orderRouter } from "./routers/order";
@@ -18,6 +19,8 @@ const app = express(); // variable automatically inferred as Application
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(bodyParser.json());
+
+app.use(cors());  // open for everyone
 
 const port = 5000;
 
