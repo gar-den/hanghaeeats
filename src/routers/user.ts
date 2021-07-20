@@ -200,4 +200,33 @@ userRouter.get("/google/callback", (req, res, next) => {
   )(req, res, next);
 });
 
+// kakao login
+userRouter.get("/kakao", (req, res, next) => {
+  const token = req.session.token;
+
+  if (token) {
+    req.session.token = "";
+
+    return res.json({ message: "success", token });
+  }
+
+  passport.authenticate("kakao")(req, res, next);
+},);
+
+userRouter.get('/kakao/callback', (req, res, next) => {
+  passport.authenticate(
+    'kakao',
+    {
+      failureRedirect: '/',
+    },
+    (err, profile, token) => {
+      if (err) return next(err);
+
+      req.session.token = token
+      res.redirect('/api/user/kakao')
+    }
+  )(req,res,next);
+});
+
+
 export { userRouter };
