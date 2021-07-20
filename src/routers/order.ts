@@ -31,10 +31,9 @@ orderRouter.post("/", authMiddleware, async (req, res) => {
 
   await Orders.create({ storeId, menus, userId, orderDate: today, price });
   await Stores.updateOne({ _id: storeId }, { $inc: { orders: 1 } });
+  const order = await Orders.findOne({ orderDate: today }).populate('storeId');
 
-  const order = await Orders.findOne({ orderDate: today });
-
-  res.json({ message: "success", orderId: order._id });
+  res.json({ message: "success", orderId: order._id, menu:menus,  store : order.storeId });
 });
 
 orderRouter.get("/", authMiddleware, async (req, res) => {
