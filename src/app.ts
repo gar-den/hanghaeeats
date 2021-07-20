@@ -12,6 +12,7 @@ import { userRouter } from "./routers/user";
 import { menuRouter } from "./routers/menu";
 
 import { passportConfig } from "./routers/passport";
+import { kakaoPassportConfig } from "./routers/kakaopassport";
 
 // crawling
 import { storePost } from "./postData/store";
@@ -37,6 +38,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 passportConfig();
+kakaoPassportConfig();
 
 app.get('/', (req, res) => {
   if (!req.session.token) return res.redirect("/login");

@@ -18,9 +18,10 @@ orderRouter.post("/", authMiddleware, async (req, res) => {
   for (let i = 0; i < menus.length; i++) {
     menu = await Menus.findOne({ _id: menus[i].menuId });
     menu_price = menu.price;
+    menus[i].name = menu.name
 
     price += menu_price * menus[i].count;
-   }
+}
 
   // let ship_fee = 0
   // if (price < 50000) {
@@ -28,18 +29,19 @@ orderRouter.post("/", authMiddleware, async (req, res) => {
 
   //   ship_fee = 2000;
   // }
-
-  await Orders.create({ storeId, menus, userId, orderDate: today, price });
+  
+  await Orders.create({ storeId, menus , userId, orderDate: today, price });
   await Stores.updateOne({ _id: storeId }, { $inc: { orders: 1 } });
   const order = await Orders.findOne({ orderDate: today }).populate('storeId');
+console.log(menus)
 
-  res.json({ message: "success", orderId: order._id, menu:menus,  store : order.storeId });
+  res.json({ message: "success", orderId: order._id, menus ,  store : order.storeId });
 });
 
 orderRouter.get("/", authMiddleware, async (req, res) => {
   const userId = res.locals.user._id;
 
-  const orders = await Orders.find({ userId });
+  const orders = await Orders.find({ userId }).populate("storeId");
 
   res.json({ message: "success", orders: orders });
 });
