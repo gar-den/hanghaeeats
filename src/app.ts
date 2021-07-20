@@ -52,20 +52,20 @@ app.get('/', (req, res) => {
 // `);
 });
 
-app.get('/login', (req, res) => {
-  if (req.session.token) return res.redirect("/");
+// app.get('/login', (req, res) => {
+//   if (req.session.token) return res.redirect("/");
 
-  res.send(`
-    <form method="GET" action="/api/user/google">
-      <input id="google_login_btn" type="submit" name="">
-    </form>
-  `)
-})
+//   res.send(`
+//     <form method="GET" action="/api/user/google">
+//       <input id="google_login_btn" type="submit" name="">
+//     </form>
+//   `)
+// })
 
-app.get('/logout', (req, res, next) => {
-  req.logout();
-  res.redirect("/login");
-})
+// app.get('/logout', (req, res, next) => {
+//   req.logout();
+//   res.redirect("/login");
+// })
 
 // APIs
 app.use("/api/user", [userRouter]);
