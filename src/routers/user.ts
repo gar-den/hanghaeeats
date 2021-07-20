@@ -1,4 +1,7 @@
-import express, { Request, Response, NextFunction, Router } from "express";
+import express, { Request, Response, NextFunction, Router, response } from "express";
+import passport from "passport";
+import session from "express-session"
+
 import Users from "../schemas/user";
 import Stores from "../schemas/store";
 import { authMiddleware } from "../auth-middleware";
@@ -6,6 +9,12 @@ import { authMiddleware } from "../auth-middleware";
 import joi from "joi";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
+
+declare module 'express-session' {
+  export interface SessionData {
+    token: String
+  }
+}
 
 const userRouter = express.Router();
 
@@ -68,7 +77,7 @@ userRouter.post("/auth", async (req, res) => {
 
   const token = jwt.sign({ userId: user._id }, "gardenisthebest");
 
-  res.json({ message: "success", token: token });
+  res.json({ message: "success", token: token, user: user.nickname });
 });
 
 // if the person is logined
@@ -157,6 +166,38 @@ userRouter.get("/like-stores/:storeId", authMiddleware, async (req, res) => {
   } else {
     res.json({ message: "success", liked: false });
   }
+});
+
+// google login
+userRouter.get("/google", (req, res, next) => {
+  const token = req.session.token;
+
+  if (token) {
+    req.session.token = "";
+
+    return res.json({ message: "success", token });
+  }
+
+  passport.authenticate(
+    "google", { scope: ["email", "profile"] }, (err, user, info) => {
+    }
+  )(req, res, next);
+});
+
+userRouter.get("/google/callback", (req, res, next) => {
+  passport.authenticate(
+    "google", {
+      successRedirect: "/",
+      failureRedirect: "/login"
+    }, (err, profile, info) => {
+      if (err) return next(err);
+
+      const token = info.message;
+
+      req.session.token = token;
+      res.redirect("/api/user/google");
+    }
+  )(req, res, next);
 });
 
 export { userRouter };
