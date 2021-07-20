@@ -13,6 +13,10 @@ const UserSchema: Schema = new Schema({
     type: Array,
     default: [],
   },
+  profile: {
+    type: Array,
+    default: []
+  }
 });
 
 export default mongoose.model("Users", UserSchema);
