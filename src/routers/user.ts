@@ -32,6 +32,8 @@ const joiSchema = joi.object({
 userRouter.post("/", async (req, res) => {
   const { email, nickname, password, phone } = req.body;
 
+  console.log("email:", email, "nickname:", nickname, password, phone);
+
   const existUser = await Users.findOne({ nickname, email });
   if (existUser) {
     res.json({ message: "fail", err: "existed user" });
