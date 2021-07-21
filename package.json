@@ -1,12 +1,13 @@
 {
   "name": "hanghaeeats",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node dist/app.js",
     "dev": "tsc && nodemon src/app.ts",
     "prettify": "prettier --write src/*.ts src/**/*.ts",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "start-gendoc": "node ./src/swagger.ts"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +22,9 @@
     "mongoose": "^5.13.2",
     "passport": "^0.4.1",
     "passport-google-oauth2": "^0.2.0",
-    "passport-kakao": "^1.0.1"
+    "passport-kakao": "^1.0.1",
+    "swagger-autogen": "^2.11.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -33,6 +36,7 @@
     "@types/passport": "^1.0.7",
     "@types/passport-google-oauth2": "^0.1.4",
     "@types/passport-kakao": "^0.2.1",
+    "@types/swagger-ui-express": "^4.1.3",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
     "ts-node": "^10.1.0",
