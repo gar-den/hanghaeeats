@@ -19,7 +19,7 @@ reviewRouter.post("/", authMiddleware, async (req, res) => {
     for (let i = 0; i<isExistCheckReview.menus.length; i++){
       menuIdList.push(isExistCheckReview.menus[i].menuId)
       console.log(isExistCheckReview.menus[i])
-      console.log(isExistCheckReview.menus[i].menuId)
+      console.log(isExistCheckReview.menus[i].menuId)     
     }
     
 
