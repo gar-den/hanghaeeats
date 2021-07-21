@@ -9,8 +9,8 @@ const StoreSchema: Schema = new Schema({
     default: 0,
   },
   avgStar: {
-    type: String,
-    default: "0",
+    type: Number,
+    default: 0,
   },
   countStar: {
     type: Number,
