@@ -23,18 +23,17 @@ const kakaoPassportConfig = () => {
         const provider = profile.provider;
 
         try {
-          const checkUser = await Users.findOne({ profile: [{ provider: id }, {id:id}] });
+          let user = await Users.findOne({ profile: [{ provider: "kakao" }, {id:id}] });
 
-          if (!checkUser) {
-            const newUser = await Users.create({
+          if (!user) {
+            user = await Users.create({
               profile: [{ provider: provider }, { id: id }],
               nickname,
-            });
-            const token = jwt.sign({ userId: newUser._id }, 'gardenisthebest');
+            });}
+            const token = jwt.sign({ userId: user._id }, 'gardenisthebest');
 
-            return done(null, newUser, token);
-          }
-          return done(null, false);
+            return done(null, user, token);
+          
         } catch (error) {
           return done(error);
         }

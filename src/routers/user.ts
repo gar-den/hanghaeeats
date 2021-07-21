@@ -32,8 +32,6 @@ const joiSchema = joi.object({
 userRouter.post("/", async (req, res) => {
   const { email, nickname, password, phone } = req.body;
 
-  console.log("email:", email, "nickname:", nickname, password, phone);
-
   const existUser = await Users.findOne({ nickname, email });
   if (existUser) {
     res.json({ message: "fail", err: "existed user" });
@@ -171,20 +169,7 @@ userRouter.get("/like-stores/:storeId", authMiddleware, async (req, res) => {
 });
 
 // google login
-userRouter.get("/google", (req, res, next) => {
-  const token = req.session.token;
-
-  if (token) {
-    req.session.token = "";
-
-    return res.json({ message: "success", token });
-  }
-
-  passport.authenticate(
-    "google", { scope: ["email", "profile"] }, (err, user, info) => {
-    }
-  )(req, res, next);
-});
+userRouter.get("/google", passport.authenticate("google", { scope: ["email", "profile"] });
 
 userRouter.get("/google/callback", (req, res, next) => {
   passport.authenticate(
@@ -196,24 +181,13 @@ userRouter.get("/google/callback", (req, res, next) => {
 
       const token = info.message;
 
-      req.session.token = token;
-      res.redirect("/api/user/google");
+      res.redirect(`http://hanghaeeats.shop/token=${token}`);
     }
   )(req, res, next);
 });
 
 // kakao login
-userRouter.get("/kakao", (req, res, next) => {
-  const token = req.session.token;
-
-  if (token) {
-    req.session.token = "";
-
-    return res.json({ message: "success", token });
-  }
-
-  passport.authenticate("kakao")(req, res, next);
-},);
+userRouter.get("/kakao", passport.authenticate("kakao"));
 
 userRouter.get('/kakao/callback', (req, res, next) => {
   passport.authenticate(
@@ -224,8 +198,7 @@ userRouter.get('/kakao/callback', (req, res, next) => {
     (err, profile, token) => {
       if (err) return next(err);
 
-      req.session.token = token
-      res.redirect('/api/user/kakao')
+      res.redirect(`http://hanghaeeats.shop/token=${token}`);
     }
   )(req,res,next);
 });

@@ -22,7 +22,7 @@ storePost.post("/", async (req, res) => {
     {
       name: "푸라닭치킨",
       image:
-        "https://lh3.googleusercontent.com/proxy/J0IdU7AObaUrPxbw6Q46QQyHlN5eB2es32oSznnM7Q864zR80dUSfu-fJoPr2jHYesb09Pc7YwteqljAOaO6iqeB6Ty6RmLJDA",
+        "https://www.foodnews.news/data/photos/20201252/art_16086061717036_c9011e.jpg",
       category: "chicken",
     },
     {
