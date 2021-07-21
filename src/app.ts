@@ -33,6 +33,9 @@ const port = 5000;
 
 connect();
 
+const allowedOrigins = [];
+app.use(cors());
+
 app.use(session({secret: "secret key", resave: false, saveUninitialized: false}));
 
 // passport 초기화 및 session 연결
@@ -43,11 +46,12 @@ passportConfig();
 kakaoPassportConfig();
 
 app.get('/', (req, res) => {
-  if (!req.session.token) return res.redirect("/login");
+  // if (!req.session.token) return res.redirect("/login");
 
-  console.log(req.session.token);
-  const token = req.session.token
-  req.session.token = "";
+  // console.log(req.session.token);
+  // const token = req.session.token
+  // req.session.token = "";
+  res.send("Welcome to back! :) <br>- NODEMAN")
 });
 
 // APIs

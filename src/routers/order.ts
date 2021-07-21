@@ -33,7 +33,6 @@ orderRouter.post("/", authMiddleware, async (req, res) => {
   await Orders.create({ storeId, menus , userId, orderDate: today, price });
   await Stores.updateOne({ _id: storeId }, { $inc: { orders: 1 } });
   const order = await Orders.findOne({ orderDate: today }).populate('storeId');
-console.log(menus)
 
   res.json({ message: "success", orderId: order._id, menus ,  store : order.storeId });
 });
