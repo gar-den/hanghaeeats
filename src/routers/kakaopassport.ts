@@ -18,27 +18,26 @@ const kakaoPassportConfig = () => {
         callbackURL: "http://3.36.97.199/api/user/kakao/callback"
         // callbackURL: "http://nameisgarden.xyz/api/user/google/callback"
       },async (_:string, __:string, profile : any, done : any) => {
-        const id = profile.id;
+        const userId = profile.id;
         const nickname = profile.username;
         const provider = profile.provider;
+        
+        let user: any;
 
-        try {
-          let user = await Users.findOne({ profile: [{ provider: "kakao" }, {id:id}] });
+        user = await Users.findOne({profile: [{provider: "kakao"}, {id: userId}]})
 
-          if (!user) {
-            user = await Users.create({
-              profile: [{ provider: provider }, { id: id }],
-              nickname,
-            });}
-            const token = jwt.sign({ userId: user._id }, 'gardenisthebest');
+        if (!user) {
+          await Users.create({ profile: [{provider: provider}, {id: userId}], nickname });
 
-            return done(null, user, token);
-          
-        } catch (error) {
-          return done(error);
-        }
+          user = await Users.findOne({profile: [{provider: "kakao"}, {id: userId}]})
       }
-      
+
+      const _id = user._id;
+
+      const token = jwt.sign({ userId: _id }, 'gardenisthebest');
+
+      return done(null, user, token);
+      }
     ));
 }
 export { kakaoPassportConfig };
