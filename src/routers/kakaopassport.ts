@@ -23,7 +23,7 @@ const kakaoPassportConfig = () => {
         const provider = profile.provider;
 
         try {
-          const checkUser = await Users.findOne({ profile: { provider: id } });
+          const checkUser = await Users.findOne({ profile: [{ provider: id }, {id:id}] });
 
           if (!checkUser) {
             const newUser = await Users.create({
