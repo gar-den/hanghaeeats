@@ -4,29 +4,29 @@ const ReviewSchema: Schema = new Schema({
   storeId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Store",
-    require: true,
+    required: true,
   },
   menuIdList: Array,
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    require: true,
+    required: true,
   },
   orderId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Order",
-    require: true,
+    required: true,
   },
   reviewDate: {
     type: Date,
   },
   content: {
     type: String,
-    require: true,
+    required: true,
   },
   star: {
     type: Number,
-    require: true,
+    required: true,
   },
 });
 
