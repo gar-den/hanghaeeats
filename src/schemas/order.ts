@@ -4,13 +4,13 @@ const OrderSchema: Schema = new Schema({
   storeId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Stores",
-    require: true,
+    required: true,
   },
   menus: Array,
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    require: true,
+    required: true,
   },
   orderDate: Date,
   price: Number,

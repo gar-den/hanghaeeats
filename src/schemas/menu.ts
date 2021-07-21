@@ -4,7 +4,7 @@ const MenuSchema: Schema = new Schema({
   storeId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Store",
-    require: true,
+    required: true,
   },
   name: String,
   price: Number,
