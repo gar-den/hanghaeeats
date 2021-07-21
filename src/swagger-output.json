@@ -17,13 +17,18 @@
     "http"
   ],
   "securityDefinitions": {
-    "apiKeyAuth": {
+    "Bearer": {
       "type": "apiKey",
+      "name": "Authorization",
       "in": "header",
-      "name": "X-API-KEY",
-      "description": "any description..."
+      "description": "Enter your bearer token in the format **Bearer &lt;token>**"
     }
   },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
   "consumes": [
     "application/json"
   ],

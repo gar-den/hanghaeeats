@@ -18,11 +18,10 @@ const doc = {
         }
     ],
     securityDefinitions: {
-        apiKeyAuth:{
+        Bearer:{
             type: "apiKey",
             in: "header",       // can be "header", "query" or "cookie"
-            name: "X-API-KEY",  // name of the header, query parameter or cookie
-            description: "any description..."
+            name: "Bearer",  // name of the header, query parameter or cookie
         }
     },
     definitions: {
@@ -30,7 +29,7 @@ const doc = {
     }
 };
 
-const outputFile = './swagger-output.json';
+const outputFile = './src/swagger-output.json';
 const endpointsFiles = ["./src/app.ts"];
 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(async () => {
