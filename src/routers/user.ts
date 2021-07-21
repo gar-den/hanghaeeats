@@ -169,7 +169,7 @@ userRouter.get("/like-stores/:storeId", authMiddleware, async (req, res) => {
 });
 
 // google login
-userRouter.get("/google", passport.authenticate("google", { scope: ["email", "profile"] });
+userRouter.get("/google", passport.authenticate("google", { scope: ["email", "profile"] }));
 
 userRouter.get("/google/callback", (req, res, next) => {
   passport.authenticate(
