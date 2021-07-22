@@ -17,6 +17,9 @@ const ReviewSchema: Schema = new Schema({
     ref: "Order",
     required: true,
   },
+  nickname:{
+    type:String
+  },
   reviewDate: {
     type: Date,
   },

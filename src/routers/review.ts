@@ -8,6 +8,7 @@ const reviewRouter = express.Router();
 
 reviewRouter.post("/", authMiddleware, async (req, res) => {
   const userId = res.locals.user._id;
+  const nickname = res.locals.user.nickname
   const { orderId, content, star } = req.body;
   const date = new Date();
   try {
@@ -15,18 +16,18 @@ reviewRouter.post("/", authMiddleware, async (req, res) => {
     if (isExistCheckReview.checkReview == true) {
       return res.status(400).json({ message: "이미 리뷰를 작성하셨습니다." });
     }
-    let menuIdList : Array<string> = []
+    let menuIdList : Array<object> = []
     for (let i = 0; i<isExistCheckReview.menus.length; i++){
-      menuIdList.push(isExistCheckReview.menus[i].menuId)
+      menuIdList.push({ menuId : isExistCheckReview.menus[i].menuId , name : isExistCheckReview.menus[i].name })
     }
     
-    console.log("userId:", userId);
-
+    
     const currentReview = await Reviews.create({
       storeId : isExistCheckReview.storeId,
       orderId,
       menuIdList : menuIdList,
       userId,
+      nickname,
       date,
       content,
       star,
@@ -60,7 +61,7 @@ reviewRouter.get("/:storeId", async (req, res) => {
   try {
     const isReviewExist = await Reviews.find({ storeId: storeId }).exec();
     if (isReviewExist.length == 0) {
-      return res.json({ message: "리뷰가 존재하지 않습니다." });
+      return res.json();
     }
     res.status(200).json({ message: "success", review: isReviewExist });
   } catch (err) {
