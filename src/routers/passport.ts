@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import Users from "../schemas/user";
 import passportRouter from "passport";
 import GoogleStrategy, { Strategy } from "passport-google-oauth2";
+import 'dotenv/config'
+
 const passportConfig = () => {
     passportRouter.serializeUser((user, done) => {
         done(null, user);
@@ -13,11 +15,11 @@ const passportConfig = () => {
     })
     
     passportRouter.use(new Strategy({
-        clientID: "498392378371-j0sjs2lf9siqjk543e3m4klvjshhe7b6.apps.googleusercontent.com",
+        clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: "",
         callbackURL: "http://nameisgarden.xyz/api/user/google/callback"
       },
-      async function(accessToken, refreshToken, profile, done:GoogleStrategy.VerifyCallback) {
+      async function(_:string, __:string, profile : any, done:GoogleStrategy.VerifyCallback) {
         const userId = profile.id;
         const email = profile.email;
         const nickname = profile.name.givenName;
